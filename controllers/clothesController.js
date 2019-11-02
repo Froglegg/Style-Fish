@@ -41,12 +41,12 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   findOneBottom: function(req, res) {
-    db.Bottom.find(req.params.id)
+    db.Bottom.findById(req.params.id)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   findOneOuterwear: function(req, res) {
-    db.Outerwear.find(req.params.id)
+    db.Outerwear.findById(req.params.id)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },

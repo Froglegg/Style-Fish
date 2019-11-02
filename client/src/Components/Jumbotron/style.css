@@ -1,0 +1,5 @@
+@media screen and (max-width: 930px) {
+  .jumbotron > h1 {
+    font-size: 5em;
+  }
+}

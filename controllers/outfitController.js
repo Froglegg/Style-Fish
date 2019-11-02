@@ -4,48 +4,49 @@ const db = require("../models");
 module.exports = {
   findAll: function(req, res) {
     db.Outfit.find(req.query)
-    .populate("user")
-    .populate("tops")
-    .populate("bottom")
-    .populate("shoe")
-    .populate("outerwear")
+      .populate("user")
+      .populate("top")
+      .populate("bottom")
+      .populate("shoe")
+      .populate("outerwear")
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   findById: function(req, res) {
     db.Outfit.findById(req.params.id)
+      .populate("user")
+      .populate("top")
+      .populate("bottom")
+      .populate("shoe")
+      .populate("outerwear")
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   create: function(req, res) {
-    // db.Outfit.create(req.body)
-    //   .then(dbModel => res.json(dbModel))
-    //   .catch(err => res.status(422).json(err));
+    console.log(req.body);
+    console.log(`\n\nAnd here is the user ID ${req.params.id}`);
 
-      db.Outfit.create(req.body)
+    db.Outfit.create(req.body)
       .then(function(dbModel) {
-        // If a Note was created successfully, find one Article with an `_id` equal to `req.params.id`. Update the Article to be associated with the new Note
+        // If an outfit was created successfully, find one user with an `_id` equal to `req.params.id`. Update the User to be associated with the new outfit
         // { new: true } tells the query that we want it to return the updated User -- it returns the original by default
         // Since our mongoose query returns a promise, we can chain another `.then` which receives the result of the query
-        console.log(dbModel.id);
+        console.log(dbModel);
         return db.User.findOneAndUpdate(
           { _id: req.params.id },
           { $push: { outfits: dbModel._id } },
           { new: true }
         );
       })
-      .then(function(dbArticle) {
-      console.log("done");
-        // If we were able to successfully update an Article, send it back to the client
-        res.json(dbArticle);
-
+      .then(function(dbModel) {
+        console.log("done");
+        // If we were able to successfully associate an outfit with a user, send it back to the client
+        res.json(dbModel);
       })
       .catch(function(err) {
         // If an error occurred, send it to the client
         res.json(err);
-    //   });
-  });
-
+      });
   },
   update: function(req, res) {
     db.Outfit.findOneAndUpdate({ _id: req.params.id }, req.body)
@@ -57,5 +58,18 @@ module.exports = {
       .then(dbModel => dbModel.remove())
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
+  },
+  removeAll: function(req, res) {
+    db.Outfit.remove({})
+      .then(dbModel => res.json(dbModel))
+      .catch(err => console.log(err));
+  },
+  removeAllFromUser: function(req, res) {
+    db.User.updateOne(
+      { _id: req.params.id },
+      { $pull: { outfits: { $exists: true } } }
+    )
+      .then(dbModel => res.json(dbModel))
+      .catch(err => console.log(err));
   }
 };

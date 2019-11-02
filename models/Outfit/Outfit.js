@@ -6,34 +6,37 @@ var Schema = mongoose.Schema;
 // Using the Schema constructor, create a new UserSchema object
 // This is similar to a Sequelize model
 var OutfitSchema = new Schema({
-  // `title` is required and of type String
   type: {
     type: String,
-    required: true
+    default: ""
   },
-  top: [{
+  top: {
     type: Schema.Types.ObjectId,
     ref: "Top"
-  }],
-  bottom: [{
+  },
+  bottom: {
     type: Schema.Types.ObjectId,
     ref: "Bottom"
-  }],
-  shoe: [{
+  },
+  shoe: {
     type: Schema.Types.ObjectId,
     ref: "Shoe"
-  }],
-  outerwear: [{
+  },
+  outerwear: {
     type: Schema.Types.ObjectId,
     ref: "Outerwear"
-  }]
-  // `note` is an object that stores a Note id
-  // The ref property links the ObjectId to the Note model
-  // This allows us to populate the Article with an associated Note
+  },
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: "User"
+  }
+
+  // The ref property links the ObjectId to the Outfit model
+  // This allows us to populate the User with the associated Outfit
 });
 
 // This creates our model from the above schema, using mongoose's model method
 var Outfit = mongoose.model("Outfit", OutfitSchema);
 
-// Export the Article model
+// Export the Outfit model
 module.exports = Outfit;

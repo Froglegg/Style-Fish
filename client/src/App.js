@@ -1,5 +1,13 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import React, { Component } from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect,
+  useHistory,
+  useLocation
+} from "react-router-dom";
 import About from "./Views/About";
 import Closet from "./Views/Closet";
 import Home from "./Views/Home";
@@ -7,38 +15,60 @@ import LogIn from "./Views/LogIn";
 import SignUp from "./Views/SignUp";
 import Outfit from "./Views/Outfit";
 import Nav from "./Components/Nav";
-import Footer from "./Components/Footer";
+// import Footer from "./Components/Footer";
 import NoMatch from "./Views/NoMatch";
 import ClothingDetail from "./Views/ClothingDetail";
+import { getSession, logOut } from "./utils/Session";
 import "./normalize.css";
 import "./App.css";
 
-function App() {
-  return (
-    <Router>
-      <div>
-        <Nav />
-        <Switch>
-          <Route exact path="/" component={LogIn} />
-          <Route exact path="/LogIn" component={LogIn} />
-          <Route exact path="/About" component={About} />
-          <Route exact path="/Home" component={Home} />
-          <Route exact path="/SignUp" component={SignUp} />
-          <Route exact path="/Closet" component={Closet} />
-          <Route exact path="/ClothingDetail" component={ClothingDetail} />
-          <Route exact path="/Outfit" component={Outfit} />
-          <Route path="/Outfit/:clothingType/:id" component={Outfit} />
-          <Route
-            path="/ClothingDetail/:clothingType"
-            component={ClothingDetail}
-          />
-          <Route path="/Closet/:id" component={Closet} />
-          <Route component={NoMatch} />
-        </Switch>
-        {/* <Footer /> */}
-      </div>
-    </Router>
-  );
+import { PrivateRoute } from "./Helpers/PrivateRoute";
+
+class App extends Component {
+  state = {
+    session: undefined
+  };
+
+  componentDidMount() {
+    let obj = getSession();
+    if (obj) {
+      console.log(obj.id);
+      this.setState({ session: obj.id });
+    }
+  }
+
+  render() {
+    return (
+      <Router>
+        <div>
+          <Nav session={this.state.session} />
+          <Switch>
+            <PrivateRoute exact path="/" component={Home} />
+            <Route exact path="/LogIn" component={LogIn} />
+            <Route exact path="/About" component={About} />
+            <Route exact path="/SignUp" component={SignUp} />
+            <PrivateRoute exact path="/Home" component={Home} />
+            <PrivateRoute exact path="/Closet" component={Closet} />
+            <PrivateRoute
+              exact
+              path="/ClothingDetail"
+              component={ClothingDetail}
+            />
+            <PrivateRoute exact path="/Outfit" component={Outfit} />
+            <PrivateRoute path="/Outfit/:clothingType/:id" component={Outfit} />
+            <PrivateRoute
+              path="/ClothingDetail/:clothingType"
+              component={ClothingDetail}
+            />
+            <PrivateRoute path="/Closet/:id" component={Closet} />
+
+            <Route component={NoMatch} />
+          </Switch>
+          {/* <Footer /> */}
+        </div>
+      </Router>
+    );
+  }
 }
 
 export default App;

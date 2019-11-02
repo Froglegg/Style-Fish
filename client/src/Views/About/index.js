@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import Jumbotron from "../../Components/Jumbotron";
-import API from "../../utils/API";
-import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../Components/Grid";
-import { List, ListItem } from "../../Components/List";
 
 class About extends Component {
   //   state = {};
@@ -20,14 +17,13 @@ class About extends Component {
 
   render() {
     return (
-      <Container fluid>
+      <Container>
         <Jumbotron>
           <h1>About StyleFish</h1>
         </Jumbotron>
         <Row>
           <Col size="md-12">
-            <h2>Swimmin' Styles</h2>
-            <p>
+            <p style={{ textAlign: "center" }}>
               Deutsches Ipsum Dolor quo Guten Tag posidonium Handschuh adhuc
               Rotwurst sadipscing Bezirksschornsteinfegermeister at, Rotwurst
               mei Brezel gloriatur. Vorsprung durch Technik inermis

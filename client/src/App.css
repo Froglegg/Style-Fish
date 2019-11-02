@@ -1,24 +1,15 @@
-/* .App {
-  text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
+h1 {
+  font-family: 'Apple Chancery' , cursive;
   color: white;
+  font-size: 100px
 }
 
-.App-intro {
-  font-size: large;
+body {
+  background-color: #9bd7d5;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-} */
+h2, h3 {
+color: white;
+font-family: "sans-serif";
+text-align: center;
+}

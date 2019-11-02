@@ -2,7 +2,7 @@
 import io from "socket.io-client";
 const socket = io();
 
-function subscribeToClosertFeed(cb) {
+function subscribeToClosetFeed(cb) {
   socket.on("closetFeed", sendFeed => cb(null, sendFeed));
   socket.emit("subscribeToClosetFeed", 500);
 }

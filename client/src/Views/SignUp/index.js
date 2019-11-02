@@ -1,11 +1,9 @@
 import React, { Component } from "react";
-import DeleteBtn from "../../Components/DeleteBtn";
 import Jumbotron from "../../Components/Jumbotron";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
-import { Col, Row, Container } from "../../Components/Grid";
-import { List, ListItem } from "../../Components/List";
-import { Input, TextArea, FormBtn } from "../../Components/Form";
+import { Container, Row, Col } from "../../Components/Grid";
+import { Input, FormBtn } from "../../Components/Form";
 
 class LogIn extends Component {
   state = {
@@ -36,6 +34,7 @@ class LogIn extends Component {
     console.log(userObj);
     API.createUser(userObj)
       .then(function(response) {
+        console.log(response);
         alert(response.data.message);
       })
       .catch(function(error) {
@@ -45,7 +44,10 @@ class LogIn extends Component {
 
   checkFormSubmit = event => {
     event.preventDefault();
-    if (this.state.userName.length >= 8 && this.state.userPassword.length >= 8) {
+    if (
+      this.state.userName.length >= 8 &&
+      this.state.userPassword.length >= 8
+    ) {
       if (!this.state.userPassword.split("").includes(" ")) {
         if (
           this.validateEmail(this.state.userEmail) &&
@@ -74,45 +76,53 @@ class LogIn extends Component {
 
   render() {
     return (
-      <Container fluid>
+      <Container>
         <Jumbotron>
-          <h1>LogIn</h1>
+          <h1>Sign Up</h1>
         </Jumbotron>
-        <form>
-          <Input
-            value={this.state.userName}
-            onChange={this.handleInputChange}
-            name="userName"
-            placeholder="Username (required)"
-          />
-          <Input
-            value={this.state.userEmail}
-            onChange={this.handleInputChange}
-            name="userEmail"
-            placeholder="Email Address"
-          />
-          <Input
-            value={this.state.userPassword}
-            onChange={this.handleInputChange}
-            name="userPassword"
-            placeholder="Password"
-            type="password"
-          />
-          <FormBtn
-            disabled={
-              !(
-                this.state.userEmail &&
-                this.state.userPassword &&
-                this.state.userName
-              )
-            }
-            onClick={this.checkFormSubmit}
-          >
-            Log in
-          </FormBtn>
-        </form>
-        <p>Already have an account? </p>
-        <Link to="/LogIn">Sign In Here</Link>
+        <br />
+        <Row className="justify-content-center">
+          <Col size="md-6">
+            <form>
+              <Input
+                value={this.state.userName}
+                onChange={this.handleInputChange}
+                name="userName"
+                placeholder="Username (required)"
+              />
+              <Input
+                value={this.state.userEmail}
+                onChange={this.handleInputChange}
+                name="userEmail"
+                placeholder="Email Address"
+              />
+              <Input
+                value={this.state.userPassword}
+                onChange={this.handleInputChange}
+                name="userPassword"
+                placeholder="Password"
+                type="password"
+              />
+              <FormBtn
+                disabled={
+                  !(
+                    this.state.userEmail &&
+                    this.state.userPassword &&
+                    this.state.userName
+                  )
+                }
+                onClick={this.checkFormSubmit}
+              >
+                Log in
+              </FormBtn>
+            </form>
+            <p>
+              Already have an account?
+              <br />
+              <Link to="/LogIn"> Log in Here</Link>{" "}
+            </p>
+          </Col>
+        </Row>
       </Container>
     );
   }

@@ -6,6 +6,7 @@ const ClothingItem = props => {
       <img
         src={`/assets/${props.imageURL}`}
         className={props.className ? props.className : "fitContainer"}
+        alt="Clothing item"
       ></img>
     </div>
   );

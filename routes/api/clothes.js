@@ -17,7 +17,7 @@ router.route("/outerwear").get(clothesController.findAllOuterwear);
 router.route("/shoes/:id").get(clothesController.findOneShoe);
 router.route("/tops/:id").get(clothesController.findOneTop);
 router.route("/bottoms/:id").get(clothesController.findOneBottom);
-router.route("/outerwear/:d").get(clothesController.findOneOuterwear);
+router.route("/outerwear/:id").get(clothesController.findOneOuterwear);
 
 // create routes
 router.route("/shoes").post(clothesController.createShoes);

@@ -45,6 +45,12 @@ const outerwear = [
     color: "green",
     opacity: "dark",
     imageURL: "outerwear/green.png"
+  },
+  {
+    type: "hoodie",
+    color: "black",
+    opacity: "blank",
+    imageURL: "outerwear/black.png"
   }
 ];
 
@@ -90,6 +96,12 @@ const tops = [
     color: "green",
     opacity: "dark",
     imageURL: "tops/green.png"
+  },
+  {
+    type: "short-sleeve",
+    color: "black",
+    opacity: "blank",
+    imageURL: "tops/black.png"
   }
 ];
 
@@ -135,6 +147,12 @@ const bottoms = [
     color: "green",
     opacity: "dark",
     imageURL: "bottoms/green.png"
+  },
+  {
+    type: "joggers",
+    color: "black",
+    opacity: "blank",
+    imageURL: "bottoms/black.png"
   }
 ];
 
@@ -180,6 +198,12 @@ const shoes = [
     color: "green",
     opacity: "dark",
     imageURL: "shoes/green.png"
+  },
+  {
+    type: "sneakers",
+    color: "black",
+    opacity: "blank",
+    imageURL: "shoes/black.png"
   }
 ];
 

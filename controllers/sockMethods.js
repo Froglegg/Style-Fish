@@ -4,7 +4,7 @@ const axios = require("axios");
 module.exports = {
   getClosetFeed: async (socket, port) => {
     try {
-      const res = await axios.get(`/api/users`, {
+      const res = await axios.get(`/api/outfits`, {
         proxy: {
           // host: "127.0.0.1",
           port: port
