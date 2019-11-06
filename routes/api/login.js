@@ -18,7 +18,7 @@ router.route("/").post((req, res) => {
             { expiresIn: 36000 },
             (err, token) => {
               res.json({
-                message: `success yo! token is ${token}`,
+                message: `Let's get stylish!`,
                 token,
                 isAuthed: true
               });

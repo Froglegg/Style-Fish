@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Jumbotron from "../../Components/Jumbotron";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
 import { Container, Row, Col } from "../../Components/Grid";
@@ -13,18 +12,12 @@ class LogIn extends Component {
     userPassword: ""
   };
 
-  componentDidMount() {}
-
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
       [name]: value
     });
   };
-
-  // handleFormSubmit = () => {
-
-  // }
 
   validateEmail = email => {
     var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -35,7 +28,6 @@ class LogIn extends Component {
     console.log(userObj);
     API.createUser(userObj)
       .then(function(response) {
-        console.log(response);
         alert(response.data.message);
         if (response.data.success) {
           window.location.replace("/LogIn");
