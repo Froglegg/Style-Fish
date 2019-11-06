@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Jumbotron from "../../Components/Jumbotron";
 import { Col, Row, Container } from "../../Components/Grid";
-
+import Title from "../../Components/TitleAnimation";
 class About extends Component {
   //   state = {};
 
@@ -18,20 +18,16 @@ class About extends Component {
   render() {
     return (
       <Container>
-        <Jumbotron>
+        <Title>
           <h1>About StyleFish</h1>
-        </Jumbotron>
+        </Title>
         <Row>
           <Col size="md-12">
             <p style={{ textAlign: "center" }}>
-              Deutsches Ipsum Dolor quo Guten Tag posidonium Handschuh adhuc
-              Rotwurst sadipscing Bezirksschornsteinfegermeister at, Rotwurst
-              mei Brezel gloriatur. Vorsprung durch Technik inermis
-              Entschuldigung accommodare Schadenfreude Id Projektplanung assum
-              Ampelmännchen te Handtasche erroribus Zauberer Nec Die Toten Hosen
-              amet Aufenthaltsgenehmigung iriure, Zeitgeist gloriatur was machst
-              du ut. Freude schöner Götterfunken virtute Herr Doktor per Bier At
-              HugoClub Mate scaevola Sauerkraut An Die Ärzte malorum zu spät ius
+              Welcome to StyleFish! Our application saves you time by giving you
+              outfits just by selecting the article of clothing you have along
+              with its color. We generate different styles which will all
+              display on one page for you to visually compare yourself!
             </p>
           </Col>
         </Row>

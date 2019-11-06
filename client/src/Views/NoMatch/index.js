@@ -1,18 +1,19 @@
 import React from "react";
 import { Container } from "../../Components/Grid";
 import Jumbotron from "../../Components/Jumbotron";
+import Title from "../../Components/TitleAnimation"
 
 function NoMatch() {
   return (
     <Container fluid>
-      <Jumbotron>
+      <Title>
         <h1>404 Page Not Found</h1>
         <h1>
           <span role="img" aria-label="Face With Rolling Eyes Emoji">
             🙄
           </span>
         </h1>
-      </Jumbotron>
+</Title>
     </Container>
   );
 }

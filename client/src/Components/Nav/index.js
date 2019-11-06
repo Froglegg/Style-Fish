@@ -6,10 +6,10 @@ import { Redirect } from "react-router-dom";
 
 function Nav(props) {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-primary">
+    <nav className="navbar navbar-expand-lg navbar-light">
       <Link to="/Home" className="navbar-brand">
         <img
-          src="/assets/logoStyleFish.png"
+          src="/assets/StyleFishLogo.png"
           width="50px"
           height="50px"
           className="logo"
@@ -28,19 +28,19 @@ function Nav(props) {
                       : "nav-link"
                   }
                 >
-                  Go Fish
+                  <div className="NavLinks">Go Fish</div>
                 </Link>
               </li>
               <li className="nav-item">
                 <Link
                   className={
-                    window.location.pathname === "/Closet"
+                    window.location.pathname === "/MyCloset"
                       ? "nav-link active"
                       : "nav-link"
                   }
-                  to="/Closet"
+                  to="/MyCloset"
                 >
-                  Closet
+                  <div className="NavLinks">My Closet</div>
                 </Link>
               </li>
               <li className="nav-item">
@@ -52,7 +52,7 @@ function Nav(props) {
                       : "nav-link"
                   }
                 >
-                  About
+                  <div className="NavLinks">About</div>
                 </Link>
               </li>
               <li className="nav-item">
@@ -67,7 +67,7 @@ function Nav(props) {
                     logOut();
                   }}
                 >
-                  Log Out
+                  <div className="NavLinks">Log Out</div>
                 </Link>
               </li>
             </>
@@ -82,7 +82,7 @@ function Nav(props) {
                       : "nav-link"
                   }
                 >
-                  About
+                  <div className="NavLinks">About</div>
                 </Link>
               </li>
               <li className="nav-item">
@@ -94,7 +94,7 @@ function Nav(props) {
                       : "nav-link"
                   }
                 >
-                  Log in
+                  <div className="NavLinks">Log In</div>
                 </Link>
               </li>
             </>

@@ -71,5 +71,9 @@ module.exports = {
     )
       .then(dbModel => res.json(dbModel))
       .catch(err => console.log(err));
+
+    db.Outfit.deleteMany({ user: { _id: req.params.id } })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => console.log(err.message));
   }
 };

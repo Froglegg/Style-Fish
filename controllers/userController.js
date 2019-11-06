@@ -48,7 +48,8 @@ module.exports = {
                               username: dbUser.username,
                               password: dbUser.password,
                               token,
-                              message: "Welcome to stylefish!"
+                              message: "Welcome to stylefish!",
+                              success: true
                             });
                           }
                         );
@@ -93,5 +94,10 @@ module.exports = {
       .then(dbModel => dbModel.remove())
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
+  },
+  removeAll: function(req, res) {
+    db.User.remove({})
+      .then(dbModel => res.json(dbModel))
+      .catch(err => console.log(err));
   }
 };

@@ -4,6 +4,7 @@ import API from "../../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../Components/Grid";
 import ClothingItem from "../../Components/ClothingItem";
+import Title from "../../Components/TitleAnimation"
 import { runInThisContext } from "vm";
 
 class ClothingDetail extends Component {
@@ -81,9 +82,7 @@ class ClothingDetail extends Component {
   render() {
     return (
       <Container>
-        <Jumbotron>
-          <h1>Choose a style</h1>
-        </Jumbotron>
+          <Title><h1>Please choose a style!</h1></Title>
         <Row className="justify-content-center">
           {this.state.clothingType === "Tops" && this.state.tops.length
             ? this.state.tops.map(top => {

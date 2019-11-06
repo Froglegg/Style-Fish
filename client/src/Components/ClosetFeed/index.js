@@ -3,40 +3,111 @@ import { subscribeToClosetFeed } from "../../utils/ClosetFeed";
 import { Link } from "react-router-dom";
 import "./style.css";
 import API from "../../utils/API";
+import { getSession } from "../../utils/Session";
+
 class ClosetFeed extends Component {
-  constructor(props) {
-    super(props);
-    console.log(props);
-    subscribeToClosetFeed((err, res) =>
-      API.getOutfit(res._id)
-        .then(outfit => {
-          this.setState({
-            outfit: outfit.data
-          });
-        })
-        .catch(err => console.log(err))
-    );
+  state = {
+    outfit: false,
+    outfitArray: [],
+    currentUser: undefined
+  };
+
+  componentDidMount() {
+    let currentUser = getSession();
+    if (currentUser) {
+      this.setState({ currentUser: currentUser.id });
+    }
+    this.state.outfitArray = [];
+    API.getMongoClosetFeed()
+      .then(res => {
+        this.setState({ outfitArray: res.data });
+      })
+      .catch(err => console.log(err));
+
+    subscribeToClosetFeed((err, res) => {
+      if (this.state.outfit && this.state.outfit._id === res._id) {
+      } else {
+        API.getOutfit(res._id)
+          .then(outfit => {
+            this.setState(
+              {
+                outfit: outfit.data
+              },
+              () => {
+                let outfitObj = this.state.outfit;
+                // IF THE INITIAL ARRAY STATE DOESN'T CONTAIN AN OUTFIT WITH A KEY THAT HAS THE SAME ID AS THE CURRENT OUTFIT... THEN ADD THAT OUTFIT
+                if (this.state.outfitArray.some(e => e.key === outfitObj._id)) {
+                  console.log("dont do anything");
+                } else {
+                  this.addToClosetFeed(outfitObj);
+                  this.setState({
+                    outfitArray: this.state.outfitArray.concat(outfitObj)
+                  });
+                }
+              }
+            );
+          })
+          .catch(err => console.log(err));
+      }
+      if (err) {
+        console.log(err);
+      }
+    });
   }
 
-  state = {
-    outfit: false
+  addToClosetFeed = outfitObj => {
+    let [top, bottom, outerwear, shoe, user, key] = [
+      outfitObj.top,
+      outfitObj.bottom,
+      outfitObj.outerwear,
+      outfitObj.shoe,
+      outfitObj.user,
+      outfitObj._id
+    ];
+    API.addToClosetFeed({
+      top: top,
+      bottom: bottom,
+      outerwear: outerwear,
+      shoe: shoe,
+      user: user,
+      key: key
+    })
+      .then()
+      .catch(err => console.log(err));
   };
 
   render() {
     return (
-      <p className="feed">
-        Closet Feed... works if you have a hardcoded user ID and are saving
-        outfits correctly. Styling / layout TBD
-        <br />
-        {this.state.outfit ? (
-          <Link to={`/Closet/${this.state.outfit.user._id}/`}>
-            {this.state.outfit.user.username} saved a new outfit!
-          </Link>
-        ) : (
-          ""
-        )}
-        <hr></hr>
-      </p>
+      <>
+        <div className="list-overflow-container">
+          <ul className="list-group">
+            {this.state.outfitArray.length
+              ? this.state.outfitArray
+                  .slice(0)
+                  .reverse()
+                  .map(outfit =>
+                    Object.entries(outfit).map(entry =>
+                      entry[0] === "user" ? (
+                        <li className="list-group-item">
+                          {this.state.currentUser === entry[1]._id ? (
+                            <Link to={`/MyCloset`}>
+                              You saved a new outfit!
+                            </Link>
+                          ) : (
+                            <Link to={`Closet/${entry[1]._id}`}>
+                              {entry[1].username} saved a new outfit!
+                            </Link>
+                          )}
+                        </li>
+                      ) : (
+                        ""
+                      )
+                    )
+                  )
+              : ""}
+          </ul>
+        </div>
+      </>
     );
   }
 }

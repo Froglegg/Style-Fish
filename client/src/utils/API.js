@@ -21,6 +21,9 @@ export default {
       data: userDetails
     });
   },
+  removeAllUsers: function() {
+    return axios.delete(`/api/users`);
+  },
   getTops: function() {
     return axios.get("/api/clothes/tops");
   },
@@ -66,5 +69,13 @@ export default {
   },
   deleteOneOutfit: function(outfitId) {
     return axios.delete(`/api/outfits/${outfitId}`);
+  },
+
+  // socket IO closet feed API
+  getMongoClosetFeed: function() {
+    return axios.get(`/api/closetFeed`);
+  },
+  addToClosetFeed: function(outfitObj) {
+    return axios.post(`/api/closetFeed`, outfitObj);
   }
 };

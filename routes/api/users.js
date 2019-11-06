@@ -1,12 +1,12 @@
 const router = require("express").Router();
 const userController = require("../../controllers/userController");
 
-
 // Matches with "/api/users"
 router
   .route("/")
   .get(userController.findAll)
-  .post(userController.create);
+  .post(userController.create)
+  .delete(userController.removeAll);
 
 // Find user by Id and update their outfit
 router
@@ -15,6 +15,5 @@ router
   .post(userController.create)
   .put(userController.update)
   .delete(userController.remove);
-
 
 module.exports = router;

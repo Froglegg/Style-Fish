@@ -6,7 +6,7 @@ const server = require("http").createServer(app);
 // socket io setup logic: an instatntiation of Express (app) is passed through an instantiaion of an http server, so that we can run socket IO in the same server instance as the app. In other words, Express and Socket IO are listening on the same server instance. See https://stackoverflow.com/questions/17696801/express-js-app-listen-vs-server-listen
 const io = require("socket.io")(server);
 // socket IO functions
-const sockMethods = require("./controllers/sockMethods");
+const closetFeedController = require("./controllers/closetFeedController");
 const PORT = process.env.PORT || 3001;
 const mongoose = require("mongoose");
 
@@ -44,7 +44,7 @@ io.on("connection", socket => {
       interval
     );
     setInterval(() => {
-      sockMethods.getClosetFeed(socket, PORT);
+      closetFeedController.getClosetFeed(socket, PORT);
     }, interval);
   });
   socket.on("disconnect", () => {

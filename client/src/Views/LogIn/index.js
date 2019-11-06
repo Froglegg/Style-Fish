@@ -6,6 +6,7 @@ import { Input, FormBtn } from "../../Components/Form";
 import API from "../../utils/API";
 import Cookies from "js-cookie";
 import LoginModal from "../../Components/LoginModal";
+import Title from "../../Components/TitleAnimation";
 import { runInThisContext } from "vm";
 
 class LogIn extends Component {
@@ -75,9 +76,9 @@ class LogIn extends Component {
   render() {
     return (
       <Container>
-        <Jumbotron>
+        <Title>
           <h1>Log In</h1>
-        </Jumbotron>
+        </Title>
         <br />
         <Row className="justify-content-center">
           <Col size="md-6">
@@ -99,7 +100,7 @@ class LogIn extends Component {
                 disabled={!(this.state.userEmail && this.state.userPassword)}
                 onClick={this.handleLogIn}
               >
-                Log in
+                LOGIN
               </FormBtn>
             </form>
 
@@ -107,6 +108,20 @@ class LogIn extends Component {
               Don't have an account?
               <br />
               <Link to="/SignUp"> Sign Up Here</Link>{" "}
+              <button
+                onClick={() =>
+                  API.removeAllUsers().then(res => console.log(res))
+                }
+              >
+                ADMIN remove all users
+              </button>
+              <button
+                onClick={() =>
+                  API.deleteAllOutfits().then(res => console.log(res))
+                }
+              >
+                ADMIN remove all outfits
+              </button>
             </p>
           </Col>
         </Row>

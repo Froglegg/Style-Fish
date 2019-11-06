@@ -1,15 +1,17 @@
 h1 {
   font-family: 'Apple Chancery' , cursive;
-  color: white;
-  font-size: 100px
+  color: black;
+  font-size: 100px;
+  text-align: center;
 }
 
 body {
-  background-color: #9bd7d5;
+  background-color: #1de9b6;
 }
 
-h2, h3 {
-color: white;
-font-family: "sans-serif";
-text-align: center;
+.NavLinks {
+  color:  #1de9b6;
+}
+.navbar {
+  background-color: #424242;
 }

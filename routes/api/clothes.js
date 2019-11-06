@@ -4,10 +4,6 @@ const clothesController = require("../../controllers/clothesController");
 // Matches with "/api/clothes"
 
 // get routes
-
-// router.route("/").get(clothesController.findAllClothes);
-
-// get routes
 router.route("/shoes").get(clothesController.findAllShoes);
 router.route("/tops").get(clothesController.findAllTops);
 router.route("/bottoms").get(clothesController.findAllBottoms);

@@ -5,5 +5,6 @@ module.exports = {
   Shoe: require("./Shoe/Shoe"),
   Top: require("./Top/Top"),
   User: require("./User/User"),
-  Outfit: require("./Outfit/Outfit")
+  Outfit: require("./Outfit/Outfit"),
+  ClosetFeed: require("./ClosetFeed/ClosetFeed")
 };

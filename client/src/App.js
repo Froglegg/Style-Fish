@@ -9,6 +9,7 @@ import {
   useLocation
 } from "react-router-dom";
 import About from "./Views/About";
+import MyCloset from "./Views/MyCloset";
 import Closet from "./Views/Closet";
 import Home from "./Views/Home";
 import LogIn from "./Views/LogIn";
@@ -31,6 +32,8 @@ class App extends Component {
 
   componentDidMount() {
     let obj = getSession();
+    console.log(`hjey this is the 36 token ${obj}`);
+
     if (obj) {
       console.log(obj.id);
       this.setState({ session: obj.id });
@@ -43,11 +46,12 @@ class App extends Component {
         <div>
           <Nav session={this.state.session} />
           <Switch>
-            <PrivateRoute exact path="/" component={Home} />
             <Route exact path="/LogIn" component={LogIn} />
             <Route exact path="/About" component={About} />
             <Route exact path="/SignUp" component={SignUp} />
+            <PrivateRoute exact path="/" component={Home} />
             <PrivateRoute exact path="/Home" component={Home} />
+            <PrivateRoute exact path="/MyCloset" component={MyCloset} />
             <PrivateRoute exact path="/Closet" component={Closet} />
             <PrivateRoute
               exact
