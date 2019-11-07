@@ -14,10 +14,7 @@ class ClosetFeed extends Component {
 
   componentDidMount() {
     let currentUser = getSession();
-    if (currentUser) {
-      this.setState({ currentUser: currentUser.id });
-    }
-    this.state.outfitArray = [];
+    this.setState({ currentUser: currentUser.id });
     API.getMongoClosetFeed()
       .then(res => {
         this.setState({ outfitArray: res.data });
@@ -26,6 +23,7 @@ class ClosetFeed extends Component {
 
     subscribeToClosetFeed((err, res) => {
       if (this.state.outfit && this.state.outfit._id === res._id) {
+        return console.log("dont do anything");
       } else {
         API.getOutfit(res._id)
           .then(outfit => {
@@ -37,7 +35,7 @@ class ClosetFeed extends Component {
                 let outfitObj = this.state.outfit;
                 // IF THE INITIAL ARRAY STATE DOESN'T CONTAIN AN OUTFIT WITH A KEY THAT HAS THE SAME ID AS THE CURRENT OUTFIT... THEN ADD THAT OUTFIT
                 if (this.state.outfitArray.some(e => e.key === outfitObj._id)) {
-                  console.log("dont do anything");
+                  return console.log("dont do anything");
                 } else {
                   this.addToClosetFeed(outfitObj);
                   this.setState({

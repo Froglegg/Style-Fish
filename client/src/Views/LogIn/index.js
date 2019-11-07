@@ -20,9 +20,11 @@ class LogIn extends Component {
         if (response.data.token) {
           Cookies.set("userToken", response.data.token);
         }
-        alert(response.data.message);
         if (response.data.isAuthed === true) {
+          alert(response.data.message);
           window.location.replace("/");
+        } else {
+          alert(response.data.message);
         }
       })
       .catch(function(error) {
