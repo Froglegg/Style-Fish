@@ -10,18 +10,25 @@
 .feed > a {
 }
 .feed > a:hover {
-  color: #a6b3ea;
+  color: #1de9e9;
 }
 
 .list-overflow-container {
   direction: rtl;
   max-height: 200px;
-  border: 1px #dddddd solid;
   border-radius: 4px;
   overflow-y: scroll;
   overflow-x: hidden;
 }
+.list-overflow-container::-webkit-scrollbar {
+  background-color: #1de9e9a6;
+  border-radius: 8px;
+}
+.list-overflow-container::-webkit-scrollbar-thumb {
+  background-color: #1db6e9;
 
+  border-radius: 8px;
+}
 .list-overflow-container ul {
   margin: 0;
 }
@@ -50,14 +57,19 @@
 
 .list-group-item {
   direction: ltr;
-
   background-color: #1de9b6;
   font-family: "Spectral", sans-serif;
   color: #1e1d1a;
   font-size: 14px;
   transition: all ease-in-out 0.2s;
 }
-
 .list-group-item:hover {
-  background-color: #a6b3ea;
+  background-color: #1de9e9;
+}
+
+.nameSpan {
+  transition: all ease-in-out 0.2s;
+}
+.nameSpan:hover {
+  color: rgb(32, 32, 32);
 }

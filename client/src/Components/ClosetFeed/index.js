@@ -89,11 +89,16 @@ class ClosetFeed extends Component {
                         <li className="list-group-item">
                           {this.state.currentUser === entry[1]._id ? (
                             <Link to={`/MyCloset`}>
-                              You saved a new outfit!
+                              <span className="nameSpan">
+                                You saved a new outfit!
+                              </span>
                             </Link>
                           ) : (
                             <Link to={`Closet/${entry[1]._id}`}>
-                              {entry[1].username} saved a new outfit!
+                              <span className="nameSpan">
+                                {" "}
+                                {entry[1].username} saved a new outfit!
+                              </span>
                             </Link>
                           )}
                         </li>
