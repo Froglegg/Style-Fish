@@ -1,6 +1,7 @@
 # StyleFish
 
 StyleFish is a MERN-stack application for folks who want to up their fashion game. Sign up, pick a starter clothing item, and StyleFish will generate an outfit that you can then save to your closet. Check out other users' closets and save them to your own closet.
+
 ![](demo.gif)
 
 ## Technologies used
