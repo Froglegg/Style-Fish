@@ -1,11 +1,9 @@
 import React, { Component } from "react";
-import Jumbotron from "../../Components/Jumbotron";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../Components/Grid";
 import ClothingItem from "../../Components/ClothingItem";
-import Title from "../../Components/TitleAnimation"
-import { runInThisContext } from "vm";
+import Title from "../../Components/TitleAnimation";
 
 class ClothingDetail extends Component {
   state = {
@@ -19,18 +17,11 @@ class ClothingDetail extends Component {
 
   componentDidMount() {
     let params = this.props.match.params.clothingType;
-    let clothingType;
-    console.log(params);
     switch (params) {
       case "Tops":
         this.setState({ clothingType: "Tops" }, () =>
           API.getTops()
-            .then(
-              res => this.setState({ tops: res.data }),
-              () => {
-                return (clothingType = "Tops");
-              }
-            )
+            .then(res => this.setState({ tops: res.data }), () => {})
             .catch(err => console.log(err))
         );
 
@@ -38,12 +29,7 @@ class ClothingDetail extends Component {
       case "Bottoms":
         this.setState({ clothingType: "Bottoms" }, () =>
           API.getBottoms()
-            .then(
-              res => this.setState({ bottoms: res.data }),
-              () => {
-                return (clothingType = "Bottoms");
-              }
-            )
+            .then(res => this.setState({ bottoms: res.data }), () => {})
             .catch(err => console.log(err))
         );
 
@@ -51,12 +37,7 @@ class ClothingDetail extends Component {
       case "Outerwear":
         this.setState({ clothingType: "Outerwear" }, () =>
           API.getOuterwear()
-            .then(
-              res => this.setState({ outerwear: res.data }),
-              () => {
-                return (clothingType = "Outerwear");
-              }
-            )
+            .then(res => this.setState({ outerwear: res.data }), () => {})
             .catch(err => console.log(err))
         );
 
@@ -64,12 +45,7 @@ class ClothingDetail extends Component {
       case "Shoes":
         this.setState({ clothingType: "Shoes" }, () =>
           API.getShoes()
-            .then(
-              res => this.setState({ shoes: res.data }),
-              () => {
-                return (clothingType = "Shoes");
-              }
-            )
+            .then(res => this.setState({ shoes: res.data }), () => {})
             .catch(err => console.log(err))
         );
 
@@ -82,7 +58,9 @@ class ClothingDetail extends Component {
   render() {
     return (
       <Container>
-          <Title><h1>Please choose a style!</h1></Title>
+        <Title>
+          <h1>Please choose a style!</h1>
+        </Title>
         <Row className="justify-content-center">
           {this.state.clothingType === "Tops" && this.state.tops.length
             ? this.state.tops.map(top => {

@@ -1,13 +1,5 @@
 import React, { Component } from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  Redirect,
-  useHistory,
-  useLocation
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import About from "./Views/About";
 import MyCloset from "./Views/MyCloset";
 import Closet from "./Views/Closet";
@@ -16,10 +8,9 @@ import LogIn from "./Views/LogIn";
 import SignUp from "./Views/SignUp";
 import Outfit from "./Views/Outfit";
 import Nav from "./Components/Nav";
-// import Footer from "./Components/Footer";
 import NoMatch from "./Views/NoMatch";
 import ClothingDetail from "./Views/ClothingDetail";
-import { getSession, logOut } from "./utils/Session";
+import { getSession } from "./utils/Session";
 import "./normalize.css";
 import "./App.css";
 
@@ -32,10 +23,8 @@ class App extends Component {
 
   componentDidMount() {
     let obj = getSession();
-    console.log(`hjey this is the 36 token ${obj}`);
 
     if (obj) {
-      console.log(obj.id);
       this.setState({ session: obj.id });
     }
   }

@@ -1,7 +1,6 @@
 import React from "react";
 import { Container } from "../../Components/Grid";
-import Jumbotron from "../../Components/Jumbotron";
-import Title from "../../Components/TitleAnimation"
+import Title from "../../Components/TitleAnimation";
 
 function NoMatch() {
   return (
@@ -13,7 +12,7 @@ function NoMatch() {
             🙄
           </span>
         </h1>
-</Title>
+      </Title>
     </Container>
   );
 }

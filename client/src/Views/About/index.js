@@ -1,20 +1,7 @@
 import React, { Component } from "react";
-import Jumbotron from "../../Components/Jumbotron";
 import { Col, Row, Container } from "../../Components/Grid";
 import Title from "../../Components/TitleAnimation";
 class About extends Component {
-  //   state = {};
-
-  //   componentDidMount() {
-  //     this.loadClothes();
-  //   }
-
-  //   loadClothes = () => {
-  //     API.getClothes()
-  //       .then(res => this.setState({ clothes: res.data }))
-  //       .catch(err => console.log(err));
-  //   };
-
   render() {
     return (
       <Container>

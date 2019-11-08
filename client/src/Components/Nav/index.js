@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
 import { logOut } from "../../utils/Session";
-import { Redirect } from "react-router-dom";
 
 function Nav(props) {
   return (
@@ -13,6 +12,7 @@ function Nav(props) {
           width="50px"
           height="50px"
           className="logo"
+          alt="StyleFish Logo"
         ></img>
       </Link>
       <button
